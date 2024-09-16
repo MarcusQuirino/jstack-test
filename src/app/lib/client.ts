@@ -7,7 +7,7 @@ import superjson from "superjson"
 const getBaseUrl = () => {
   return process.env.NODE_ENV === "development"
     ? "http://localhost:3000/"
-    : "https://test-worker.marcusfilipus.workers.dev/"
+    : "https://jstack-test.vercel.app/"
 }
 
 export const baseClient = hc<AppType>(getBaseUrl(), {

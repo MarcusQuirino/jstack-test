@@ -2,3 +2,8 @@ name = "test-worker"
 main = "src/server/index.ts"
 compatibility_date = "2024-03-29"
 compatibility_flags = ["nodejs_compat"]
+
+[vars]
+DATABASE_URL = "postgresql://test_owner:QAv4i9JKUmpI@ep-snowy-salad-a4p83v3n.us-east-1.aws.neon.tech/test?sslmode=require"
+REDIS_URL = "https://striking-dragon-57313.upstash.io"
+REDIS_TOKEN = "Ad_hAAIjcDFkZmRlYjQ2ODA3Yjk0MDMzYThjNGU0MGE2YzZjZmY4MnAxMA"
