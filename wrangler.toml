@@ -4,6 +4,7 @@ compatibility_date = "2024-03-29"
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
-DATABASE_URL = "postgresql://test_owner:QAv4i9JKUmpI@ep-snowy-salad-a4p83v3n.us-east-1.aws.neon.tech/test?sslmode=require"
+TURSO_DATABASE_URL = "libsql://sla-marcusquirino.turso.io"
+TURSO_AUTH_TOKEN = "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjY1MTkxODEsImlkIjoiMTk2MWJkN2YtOTFhMi00MWU1LTg5MmQtMWEzY2UwOWVjOTM5In0.9bS4mowzJ4YDlfOD0nfBBHICuqUHG1pXOUDWgvy_0nkfDyz4uvp9bjQFUbT4BG53Wr7IV0NoQk2ZQ5hqh7k5Bg"
 REDIS_URL = "https://striking-dragon-57313.upstash.io"
 REDIS_TOKEN = "Ad_hAAIjcDFkZmRlYjQ2ODA3Yjk0MDMzYThjNGU0MGE2YzZjZmY4MnAxMA"

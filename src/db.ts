@@ -1,5 +1,5 @@
-import { Pool } from "@neondatabase/serverless"
-import { PrismaNeon } from "@prisma/adapter-neon"
+import { PrismaLibSQL } from "@prisma/adapter-libsql"
+import { createClient } from "@libsql/client"
 import { PrismaClient } from "@prisma/client"
 
 declare global {
@@ -9,13 +9,20 @@ declare global {
 
 let prisma: PrismaClient
 if (process.env.NODE_ENV === "production") {
-  const pool = new Pool({ connectionString: process.env.DATABASE_URL })
-  const adapter = new PrismaNeon(pool)
+  const libsql = createClient({
+    url: process.env.TURSO_DATABASE_URL!,
+    authToken: process.env.TURSO_AUTH_TOKEN,
+  })
+
+  const adapter = new PrismaLibSQL(libsql)
   prisma = new PrismaClient({ adapter })
 } else {
   if (!global.cachedPrisma) {
-    const pool = new Pool({ connectionString: process.env.DATABASE_URL })
-    const adapter = new PrismaNeon(pool)
+    const libsql = createClient({
+      url: process.env.TURSO_DATABASE_URL!,
+      authToken: process.env.TURSO_AUTH_TOKEN,
+    })
+    const adapter = new PrismaLibSQL(libsql)
     global.cachedPrisma = new PrismaClient({ adapter })
   }
   prisma = global.cachedPrisma

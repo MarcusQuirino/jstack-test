@@ -1,6 +1,6 @@
-import { Pool } from "@neondatabase/serverless"
-import { PrismaNeon } from "@prisma/adapter-neon"
 import { PrismaClient } from "@prisma/client"
+import { PrismaLibSQL } from "@prisma/adapter-libsql"
+import { createClient } from "@libsql/client"
 import { Redis } from "@upstash/redis/cloudflare"
 import { env } from "hono/adapter"
 import { cacheExtension } from "./__internals/db/cache-extension"
@@ -15,11 +15,12 @@ import { j } from "./__internals/j"
 const extendedDatabaseMiddleware = j.middleware(async ({ c, next }) => {
   const variables = env(c)
 
-  const pool = new Pool({
-    connectionString: variables.DATABASE_URL,
+  const libsql = createClient({
+    url: variables.TURSO_DATABASE_URL,
+    authToken: variables.TURSO_AUTH_TOKEN,
   })
 
-  const adapter = new PrismaNeon(pool)
+  const adapter = new PrismaLibSQL(libsql)
 
   const redis = new Redis({
     token: variables.REDIS_TOKEN,
